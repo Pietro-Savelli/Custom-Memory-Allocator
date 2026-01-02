@@ -34,7 +34,7 @@ void *nuovoNodo(nodo* attuale, size_t s, int n){
     // se entra un nodo dopo la nuova allocazione
     if(attuale->size >= n*s+sizeof(nodo)){
 
-        nodo *new = (nodo *)(base + sizeof(nodo) + n * s);// il nuovo indirizzo è attuale + la dimensioen totrale dell array piu la sizeof del nodo per la gestione
+        nodo *new = (nodo *)(base + sizeof(nodo) + n * s);
         nodo* suc = attuale->next;   // salva il vecchio next
 
         nuovo(new, attuale, s*n)
@@ -56,19 +56,7 @@ void *nuovoNodo(nodo* attuale, size_t s, int n){
     return (void*)((char*)attuale + sizeof(nodo));
 }
 
-// [0]->[]->[]
-//   <-  <-
-/*
-0 --> next =1, prev=NULL;
-1 --> next = 2, prev=0;
-2--> next = NULL, prev=1;
 
-aggiunta nodo in mezzo
-
-0 --> next =1, prev=NULL;
-1 --> next = 2, prev=0; -------> agggrionamento next = new
-new-> next = 1->next, prev = 2->prev;
-2--> next = NULL, prev=1; -----> aggiornamento prev = new
 
 */
 
